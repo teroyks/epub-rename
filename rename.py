@@ -13,6 +13,8 @@ from metadata_parser import first_author, format_author_name
 
 parser = argparse.ArgumentParser(
     description='Rename an epub file based on author and title')
+parser.add_argument('-p', '--print-only', action='store_true',
+                    help='print out new name without renaming the file')
 parser.add_argument('filename', type=str, help='epub file')
 
 args = parser.parse_args()
@@ -24,7 +26,8 @@ try:
     dir = os.path.dirname(old_filename)
 
     new_filename = f'{author} - {metadata.title}{extension}'
-    os.rename(args.filename, f'{dir}/{new_filename}')
+    if not args.print_only:
+        os.rename(args.filename, f'{dir}/{new_filename}')
     print(new_filename)
 except EpubError as e:
     print(e)
