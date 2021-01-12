@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8f4cf9665082c0c811073a367e56b16d801cfd93bbf77cf01752d55101f28bee"
+            "sha256": "ef8e9aac2934f388eb85c65a685c8349a0679a9107fd10aeaa86f201bcc61e5b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -15,7 +15,15 @@
             }
         ]
     },
-    "default": {},
+    "default": {
+        "epub-meta": {
+            "hashes": [
+                "sha256:9d9c6afeaef796105a77d0aef33a1c943ccd91cccb2cb7716f59ad149819a4e9"
+            ],
+            "index": "pypi",
+            "version": "==0.0.7"
+        }
+    },
     "develop": {
         "astroid": {
             "hashes": [
