@@ -20,15 +20,13 @@ parser.add_argument('filename', type=str, help='epub file')
 args = parser.parse_args()
 
 try:
-    metadata = read_data(args.filename)
+    file = Path(args.filename)
+    metadata = read_data(file)
 
-    dir = Path(os.path.dirname(args.filename))
-    _, extension = os.path.splitext(args.filename)
-
-    new_filename = format_file_name(metadata) + extension
+    new_filename = format_file_name(metadata) + file.suffix
 
     if not args.print_only:
-        os.rename(args.filename, dir / new_filename)
+        os.rename(file, file.parent / new_filename)
 
     print(new_filename)
 except EpubError as e:
