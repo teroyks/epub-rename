@@ -6,6 +6,7 @@ Authorlastname Author Names - Book Title.epub
 
 import argparse
 import os
+from pathlib import Path
 
 from epub import read_data, EpubError
 from metadata_parser import format_file_name
@@ -21,13 +22,13 @@ args = parser.parse_args()
 try:
     metadata = read_data(args.filename)
 
-    dir = os.path.dirname(args.filename)
+    dir = Path(os.path.dirname(args.filename))
     _, extension = os.path.splitext(args.filename)
 
     new_filename = format_file_name(metadata) + extension
 
     if not args.print_only:
-        os.rename(args.filename, f'{dir}/{new_filename}')
+        os.rename(args.filename, dir / new_filename)
 
     print(new_filename)
 except EpubError as e:
