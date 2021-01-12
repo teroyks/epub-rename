@@ -20,9 +20,11 @@ args = parser.parse_args()
 try:
     metadata = read_data(args.filename)
     author = format_author_name(first_author(metadata.authors))
-    _, extension = os.path.splitext(args.filename)
+    old_filename, extension = os.path.splitext(args.filename)
+    dir = os.path.dirname(old_filename)
 
     new_filename = f'{author} - {metadata.title}{extension}'
-    pp(new_filename)
+    os.rename(args.filename, f'{dir}/{new_filename}')
+    print(new_filename)
 except EpubError as e:
     print(e)
