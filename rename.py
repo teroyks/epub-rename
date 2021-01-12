@@ -4,7 +4,6 @@ Desired name format:
 Authorlastname Author Names - Book Title.epub
 """
 
-from pprint import pprint as pp
 import argparse
 import os
 
