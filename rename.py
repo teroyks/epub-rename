@@ -9,7 +9,7 @@ import argparse
 import os
 
 from epub import read_data, EpubError
-from metadata_parser import first_author, format_author_name
+from metadata_parser import format_file_name
 
 parser = argparse.ArgumentParser(
     description='Rename an epub file based on author and title')
@@ -21,13 +21,16 @@ args = parser.parse_args()
 
 try:
     metadata = read_data(args.filename)
-    author = format_author_name(first_author(metadata.authors))
-    old_filename, extension = os.path.splitext(args.filename)
-    dir = os.path.dirname(old_filename)
 
-    new_filename = f'{author} - {metadata.title}{extension}'
+    dir = os.path.dirname(args.filename)
+    _, extension = os.path.splitext(args.filename)
+
+    new_filename = format_file_name(metadata) + extension
+
     if not args.print_only:
         os.rename(args.filename, f'{dir}/{new_filename}')
+
     print(new_filename)
 except EpubError as e:
     print(e)
+    exit(1)
