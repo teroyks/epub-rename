@@ -52,3 +52,7 @@ Make the script executable (`chmod u+x epub-rename`). Now you can run the rename
 ## Acknowledgements
 
 The script uses [epub-meta](https://github.com/paulocheque/epub-meta) by Paulo Cheque to read the EPUB metadata.
+
+## ToDo
+
+Many ebooks use non-standard ways to include author names (instead of a proper list). I will add parsing for these as I come across them (if the error is easy to spot and fix).
