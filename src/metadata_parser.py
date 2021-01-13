@@ -1,9 +1,17 @@
 """Methods for parsing ebook metadata."""
 
 
+def parse_list_as_name(author: str) -> str:
+    """Pick first author if name is in fact a list.
+
+    Some epubs put a comma-separated list (in error) as author name.
+    """
+    return author.split(',')[0]
+
+
 def first_author(authors_list: list) -> str:
     """Pick the first author name from a list."""
-    return authors_list[0] if authors_list else 'Unknown'
+    return parse_list_as_name(authors_list[0]) if authors_list else 'Unknown'
 
 
 def format_author_name(fullname: str) -> str:

@@ -16,6 +16,11 @@ def test_no_authors():
     assert first_author([]) == 'Unknown', 'Should handle empty authors list.'
 
 
+def test_comma_separated():
+    assert first_author(
+        ['Foo, Bar']) == 'Foo', 'Should recognize comma-separated list as author name.'
+
+
 def test_authors_list_unchanged():
     authors = ['foo']
     first_author(authors)
